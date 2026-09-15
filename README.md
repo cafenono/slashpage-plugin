@@ -1,47 +1,49 @@
 # Slashpage MCP Plugin
 
-Claude Code와 Codex에서 [Slashpage](https://slashpage.com)의 원격 MCP 서버를 연결하는 플러그인입니다.
+**English** | [한국어](README.kr.md)
 
-- MCP 서버: `https://mcp.slashpage.com/`
-- 인증: Slashpage 계정으로 OAuth 로그인
-- 마켓플레이스 / 플러그인 이름: `slashpage` / `slashpage`
-- 초기 버전: `0.1.0`
+Connect Claude Code and Codex to the remote MCP server for [Slashpage](https://slashpage.com).
 
-플러그인은 연결 설정을 설치합니다. 사용자는 자신의 계정으로 로그인하고 연결할 사이트를 승인해야 합니다. API 키나 토큰을 파일에 입력할 필요가 없습니다.
+- MCP server: `https://mcp.slashpage.com/`
+- Authentication: OAuth sign-in with your Slashpage account
+- Marketplace / plugin name: `slashpage` / `slashpage`
+- Initial version: `0.1.0`
 
-## Claude Code 설치
+The plugin installs the connection settings. Sign in with your own account and authorize the site you want to connect. You do not need to put API keys or tokens in any files.
 
-Claude Code 대화창에서 실행합니다.
+## Install in Claude Code
+
+Run these commands in a Claude Code conversation:
 
 ```text
 /plugin marketplace add cafenono/slashpage-plugin
 /plugin install slashpage@slashpage
 ```
 
-Claude Code를 다시 시작한 뒤 `/mcp`에서 Slashpage 서버를 선택하고 로그인합니다. 플러그인 서버는 `plugin:slashpage:slashpage`로 표시될 수 있습니다. 브라우저에서 연결할 사이트를 선택하고 권한을 승인합니다.
+Restart Claude Code, then open `/mcp`, select the Slashpage server, and sign in. The plugin server may appear as `plugin:slashpage:slashpage`. In your browser, select the site to connect and approve access.
 
-## Codex 설치
+## Install in Codex
 
-터미널에서 실행합니다.
+Run these commands in your terminal:
 
 ```bash
 codex plugin marketplace add cafenono/slashpage-plugin
 codex plugin add slashpage@slashpage
 ```
 
-설치 과정에서 인증이 안내되면 로그인하고, 새 Codex 세션의 `/mcp`에서 연결 상태를 확인합니다. 인증이 남아 있으면 플러그인의 연결/로그인 화면에서 완료합니다.
+If prompted during installation, sign in. Start a new Codex session and check the connection status in `/mcp`. If authentication is still required, complete it through the plugin's connection or sign-in screen.
 
-설치 명령은 Codex CLI `0.137.0`의 문법을 기준으로 작성했습니다. `plugin` 하위 명령이 없다면 해당 기능을 지원하는 버전으로 업데이트하세요. `codex plugin add`에는 `slashpage@slashpage`처럼 마켓플레이스 이름도 지정합니다.
+These commands use the syntax supported by Codex CLI `0.137.0`. If your CLI does not have the `plugin` subcommand, update to a version that supports it. Include the marketplace name when running `codex plugin add`, as in `slashpage@slashpage`.
 
-`codex mcp login slashpage`는 CLI가 `slashpage`라는 MCP 설정을 찾을 수 있을 때 사용할 수 있습니다. 먼저 `codex mcp list`에서 확인하세요. 플러그인 서버가 목록에 없다면 플러그인의 인증 화면을 이용합니다. 기존에 수동 등록한 `slashpage`의 인증 상태와 플러그인의 인증 상태를 혼동하지 마세요.
+You can use `codex mcp login slashpage` when the CLI can find an MCP configuration named `slashpage`. Check `codex mcp list` first. If the plugin server is not listed, use the plugin's authentication screen. Authentication for an existing manually registered `slashpage` server does not establish the plugin's authentication status.
 
-## 플러그인 없이 연결
+## Connect without the plugin
 
-직접 등록을 선호한다면 아래 방식을 사용합니다. 동일한 서버를 플러그인과 수동 설정으로 중복 등록하지 않는 것을 권장합니다.
+If you prefer to register the server directly, use the commands below. We recommend choosing either the plugin or manual configuration to avoid registering the same server twice.
 
 ### Claude Code
 
-터미널에서 등록한 뒤 Claude Code의 `/mcp`에서 로그인합니다.
+Register the server in your terminal, then sign in through `/mcp` in Claude Code.
 
 ```bash
 claude mcp add --transport http --scope user slashpage https://mcp.slashpage.com/
@@ -54,47 +56,47 @@ codex mcp add slashpage --url https://mcp.slashpage.com/
 codex mcp login slashpage
 ```
 
-## 연결 확인과 문제 해결
+## Verify the connection and troubleshoot
 
-- 로그인 후 연결한 사이트의 정보를 조회하도록 요청해 확인합니다. 플러그인 설치 성공만으로 인증과 도구 호출이 완료된 것은 아닙니다.
-- 연결할 사이트가 보이지 않거나 권한 오류가 나면 로그인 계정과 해당 사이트의 관리 권한을 확인하세요.
-- 인증을 취소했거나 토큰이 만료되었다면 클라이언트의 연결 화면에서 다시 로그인하세요.
-- 서버 URL은 `https://mcp.slashpage.com/`입니다. 뒤에 `/mcp`를 추가하지 않습니다.
-- 문제를 신고할 때 클라이언트 버전과 오류 메시지를 남기되, 액세스 토큰이나 개인 사이트 콘텐츠는 포함하지 마세요.
+- After signing in, ask the assistant to retrieve information from your connected site. Installing the plugin alone does not verify authentication or tool calls.
+- If your site is missing or you receive a permission error, check the account you signed in with and its management permissions for that site.
+- If you canceled authentication or your token has expired, sign in again through the client's connection screen.
+- Use `https://mcp.slashpage.com/` as the server URL. Do not append `/mcp`.
+- When reporting an issue, include your client version and the error message. Do not include access tokens or private site content.
 
-## 검증 범위
+## Verification status
 
-초기 구성은 JSON과 매니페스트의 정적 검증을 수행했습니다. 새 사용자 환경의 원격 설치 → OAuth 로그인 → 사이트 선택 → MCP 도구 호출까지의 전체 검증은 아직 완료하지 않았습니다.
+The initial configuration has passed static JSON and manifest validation. The complete flow in a new user environment—remote installation, OAuth sign-in, site selection, and MCP tool calls—has not yet been verified.
 
-2026-09-15 서버 점검에서 OAuth 메타데이터는 조회됐지만, 비인증 응답의 인증 헤더 이름 변경과 메타데이터 URL의 중복 `/`를 관찰했습니다. 클라이언트별 인증 영향은 추가 확인이 필요합니다.
+During a server check on September 15, 2026, OAuth metadata was accessible, but the unauthenticated response had a renamed authentication header and a duplicate `/` in its metadata URL. The effect on authentication in each client still needs verification.
 
-## 저장소 구조
+## Repository structure
 
 ```text
-.agents/plugins/marketplace.json         # Codex 마켓플레이스
-.claude-plugin/marketplace.json          # Claude Code 마켓플레이스
+.agents/plugins/marketplace.json         # Codex marketplace
+.claude-plugin/marketplace.json          # Claude Code marketplace
 plugins/slashpage/
-  .codex-plugin/plugin.json              # Codex 플러그인
-  .claude-plugin/plugin.json             # Claude Code 플러그인
-  .mcp.json                             # 공통 MCP 연결 설정
+  .codex-plugin/plugin.json              # Codex plugin
+  .claude-plugin/plugin.json             # Claude Code plugin
+  .mcp.json                             # Shared MCP connection settings
 ```
 
-두 마켓플레이스는 같은 플러그인 폴더를 가리킵니다. `.agents/plugins/marketplace.json`의 `source.path`는 저장소 루트 기준입니다. 이 패키지는 `.codex-plugin`과 `.claude-plugin` 호환 형식을 사용합니다.
+Both marketplaces point to the same plugin directory. The `source.path` in `.agents/plugins/marketplace.json` is relative to the repository root. This package uses the `.codex-plugin` and `.claude-plugin` compatibility formats.
 
-### 유지보수
+### Maintenance
 
-Claude Code가 설치된 환경에서 다음을 실행합니다.
+With Claude Code installed, run:
 
 ```bash
 claude plugin validate --strict .
 claude plugin validate --strict ./plugins/slashpage
 ```
 
-변경 시 두 플러그인 매니페스트의 이름과 버전을 함께 관리하고, MCP 설정 파일이 패키지에 포함되는지 확인합니다. 릴리스 검증은 기존 MCP 설정과 토큰이 없는 별도 테스트 사용자 환경에서 양쪽 클라이언트로 수행합니다.
+Keep the names and versions in both plugin manifests in sync, and make sure the package includes the MCP configuration file. Verify releases in both clients using a separate test user environment without existing MCP settings or tokens.
 
-## 참고
+## References
 
-- [Claude Code 마켓플레이스](https://code.claude.com/docs/en/plugin-marketplaces)
+- [Claude Code marketplaces](https://code.claude.com/docs/en/plugin-marketplaces)
 - [Claude Code MCP](https://code.claude.com/docs/en/mcp)
-- [OpenAI 플러그인 패키징](https://developers.openai.com/plugins/build/plugins)
+- [OpenAI plugin packaging](https://developers.openai.com/plugins/build/plugins)
 - [Codex MCP](https://developers.openai.com/codex/mcp)
