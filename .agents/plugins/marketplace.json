@@ -1,0 +1,20 @@
+{
+  "name": "slashpage",
+  "interface": {
+    "displayName": "Slashpage"
+  },
+  "plugins": [
+    {
+      "name": "slashpage",
+      "source": {
+        "source": "local",
+        "path": "./plugins/slashpage"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "slashpage",
+  "version": "0.1.0",
+  "description": "Connect to Slashpage through its remote MCP server.",
+  "author": {
+    "name": "Slashpage"
+  },
+  "homepage": "https://slashpage.com",
+  "repository": "https://github.com/cafenono/slashpage-plugin"
+}

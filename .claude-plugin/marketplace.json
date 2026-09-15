@@ -1,0 +1,16 @@
+{
+  "name": "slashpage",
+  "owner": {
+    "name": "Slashpage"
+  },
+  "metadata": {
+    "description": "Slashpage MCP integration for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "slashpage",
+      "source": "./plugins/slashpage",
+      "description": "Connect to Slashpage through its remote MCP server."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "slashpage": {
+      "type": "http",
+      "url": "https://mcp.slashpage.com/"
+    }
+  }
+}

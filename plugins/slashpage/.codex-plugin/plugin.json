@@ -1,0 +1,26 @@
+{
+  "name": "slashpage",
+  "version": "0.1.0",
+  "description": "Connect to Slashpage through its remote MCP server.",
+  "author": {
+    "name": "Slashpage"
+  },
+  "homepage": "https://slashpage.com",
+  "repository": "https://github.com/cafenono/slashpage-plugin",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Slashpage",
+    "shortDescription": "Connect your Slashpage sites",
+    "longDescription": "Use Slashpage MCP tools with the site you authorize during sign-in.",
+    "developerName": "Slashpage",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Show what I can do with my connected Slashpage site."
+    ],
+    "websiteURL": "https://slashpage.com"
+  }
+}
