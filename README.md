@@ -7,9 +7,9 @@ Connect Claude Code and Codex to the remote MCP server for [Slashpage](https://s
 - MCP server: `https://mcp.slashpage.com/`
 - Authentication: OAuth sign-in with your Slashpage account
 - Marketplace / plugin name: `slashpage` / `slashpage`
-- Version: `0.1.2`
+- Version: `0.1.3`
 
-The plugin installs the connection settings and a `slashpage-tools` skill for discovering and calling the tools exposed by your client. Sign in with your own account and authorize the site you want to connect. You do not need to put API keys or tokens in any files.
+The plugin installs the connection settings and a `manage-slashpage` skill for discovering and calling the tools exposed by your client. Sign in with your own account and authorize the site you want to connect. You do not need to put API keys or tokens in any files.
 
 ## Install in Claude Code
 
@@ -66,7 +66,7 @@ codex mcp login slashpage
 
 ### Unknown tool errors
 
-If you see `Unknown tool: slashpage.get-domain-info`, ask the assistant to use the bundled `slashpage-tools` skill, rediscover the available tools, and call the exact name exposed by the client. Tool display names and callable names can differ. This error alone does not mean your login has expired.
+If you see `Unknown tool: slashpage.get-domain-info`, ask the assistant to use the bundled `manage-slashpage` skill, rediscover the available tools, and call the exact name exposed by the client. Tool display names and callable names can differ. This error alone does not mean your login has expired.
 
 Version `0.1.2` adds guidance for this discovery and recovery flow; it does not patch the client's internal tool routing. If the exact discovered tool still fails, refresh the client's tool session and report the client version and error.
 
@@ -94,7 +94,7 @@ plugins/slashpage/
   .codex-plugin/plugin.json              # Codex plugin
   .claude-plugin/plugin.json             # Claude Code plugin
   .mcp.json                             # Shared MCP connection settings
-  skills/slashpage-tools/SKILL.md        # Tool discovery and error recovery
+  skills/manage-slashpage/SKILL.md        # Tool discovery and error recovery
 ```
 
 Both marketplaces point to the same plugin directory. The `source.path` in `.agents/plugins/marketplace.json` is relative to the repository root. This package uses the `.codex-plugin` and `.claude-plugin` compatibility formats.

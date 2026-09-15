@@ -1,0 +1,4 @@
+interface:
+  display_name: "Slashpage"
+  short_description: "Manage your Slashpage sites and content"
+  default_prompt: "Use $manage-slashpage to check my connected Slashpage site and list its channels."

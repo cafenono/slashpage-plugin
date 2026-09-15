@@ -1,9 +1,9 @@
 ---
-name: slashpage-tools
-description: Use Slashpage MCP tools to read or manage a connected Slashpage site, channels, posts, and comments. Use when the user asks about their Slashpage content, checks an MCP connection, or encounters an Unknown tool error while using Slashpage.
+name: manage-slashpage
+description: Manage your Slashpage sites and content. Use when the user wants to view connected site information, list channels, or read, create, update, and manage Slashpage posts and comments through MCP.
 ---
 
-# Slashpage tools
+# Manage Slashpage
 
 ## Discover and call tools
 

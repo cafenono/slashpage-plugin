@@ -7,9 +7,9 @@ Claude Code와 Codex에서 [Slashpage](https://slashpage.com)의 원격 MCP 서�
 - MCP 서버: `https://mcp.slashpage.com/`
 - 인증: Slashpage 계정으로 OAuth 로그인
 - 마켓플레이스 / 플러그인 이름: `slashpage` / `slashpage`
-- 버전: `0.1.2`
+- 버전: `0.1.3`
 
-플러그인은 연결 설정과 클라이언트가 제공하는 도구를 찾아 호출하는 `slashpage-tools` 스킬을 설치합니다. 사용자는 자신의 계정으로 로그인하고 연결할 사이트를 승인해야 합니다. API 키나 토큰을 파일에 입력할 필요가 없습니다.
+플러그인은 연결 설정과 클라이언트가 제공하는 도구를 찾아 호출하는 `manage-slashpage` 스킬을 설치합니다. 사용자는 자신의 계정으로 로그인하고 연결할 사이트를 승인해야 합니다. API 키나 토큰을 파일에 입력할 필요가 없습니다.
 
 ## Claude Code 설치
 
@@ -66,7 +66,7 @@ codex mcp login slashpage
 
 ### Unknown tool 오류
 
-`Unknown tool: slashpage.get-domain-info`가 나오면 에이전트에게 포함된 `slashpage-tools` 스킬을 사용해 도구 목록을 다시 조회하고, 클라이언트가 제공한 정확한 이름으로 호출하도록 요청하세요. 화면에 표시되는 이름과 실제 호출 이름은 다를 수 있습니다. 이 오류만으로 로그인 만료라고 판단하지 않습니다.
+`Unknown tool: slashpage.get-domain-info`가 나오면 에이전트에게 포함된 `manage-slashpage` 스킬을 사용해 도구 목록을 다시 조회하고, 클라이언트가 제공한 정확한 이름으로 호출하도록 요청하세요. 화면에 표시되는 이름과 실제 호출 이름은 다를 수 있습니다. 이 오류만으로 로그인 만료라고 판단하지 않습니다.
 
 `0.1.2`는 도구 탐색과 오류 복구 지침을 추가한 버전이며, 클라이언트 내부의 도구 중계 코드를 수정하지는 않습니다. 목록의 정확한 이름으로도 실패하면 클라이언트의 도구 세션을 새로 열고, 클라이언트 버전과 오류를 함께 알려 주세요.
 
@@ -94,7 +94,7 @@ plugins/slashpage/
   .codex-plugin/plugin.json              # Codex 플러그인
   .claude-plugin/plugin.json             # Claude Code 플러그인
   .mcp.json                             # 공통 MCP 연결 설정
-  skills/slashpage-tools/SKILL.md        # 도구 탐색과 오류 복구
+  skills/manage-slashpage/SKILL.md        # 도구 탐색과 오류 복구
 ```
 
 두 마켓플레이스는 같은 플러그인 폴더를 가리킵니다. `.agents/plugins/marketplace.json`의 `source.path`는 저장소 루트 기준입니다. 이 패키지는 `.codex-plugin`과 `.claude-plugin` 호환 형식을 사용합니다.
