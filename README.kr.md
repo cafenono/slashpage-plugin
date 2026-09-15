@@ -7,7 +7,7 @@ Claude Code와 Codex에서 [Slashpage](https://slashpage.com)의 원격 MCP 서�
 - MCP 서버: `https://mcp.slashpage.com/`
 - 인증: Slashpage 계정으로 OAuth 로그인
 - 마켓플레이스 / 플러그인 이름: `slashpage` / `slashpage`
-- 초기 버전: `0.1.0`
+- 버전: `0.1.1`
 
 플러그인은 연결 설정을 설치합니다. 사용자는 자신의 계정으로 로그인하고 연결할 사이트를 승인해야 합니다. API 키나 토큰을 파일에 입력할 필요가 없습니다.
 

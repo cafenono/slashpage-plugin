@@ -7,7 +7,7 @@ Connect Claude Code and Codex to the remote MCP server for [Slashpage](https://s
 - MCP server: `https://mcp.slashpage.com/`
 - Authentication: OAuth sign-in with your Slashpage account
 - Marketplace / plugin name: `slashpage` / `slashpage`
-- Initial version: `0.1.0`
+- Version: `0.1.1`
 
 The plugin installs the connection settings. Sign in with your own account and authorize the site you want to connect. You do not need to put API keys or tokens in any files.
 

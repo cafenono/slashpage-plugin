@@ -1,6 +1,6 @@
 {
   "name": "slashpage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Connect to Slashpage through its remote MCP server.",
   "author": {
     "name": "Slashpage"
