@@ -7,9 +7,9 @@ Connect Claude Code and Codex to the remote MCP server for [Slashpage](https://s
 - MCP server: `https://mcp.slashpage.com/`
 - Authentication: OAuth sign-in with your Slashpage account
 - Marketplace / plugin name: `slashpage` / `slashpage`
-- Version: `0.1.1`
+- Version: `0.1.2`
 
-The plugin installs the connection settings. Sign in with your own account and authorize the site you want to connect. You do not need to put API keys or tokens in any files.
+The plugin installs the connection settings and a `slashpage-tools` skill for discovering and calling the tools exposed by your client. Sign in with your own account and authorize the site you want to connect. You do not need to put API keys or tokens in any files.
 
 ## Install in Claude Code
 
@@ -64,9 +64,24 @@ codex mcp login slashpage
 - Use `https://mcp.slashpage.com/` as the server URL. Do not append `/mcp`.
 - When reporting an issue, include your client version and the error message. Do not include access tokens or private site content.
 
+### Unknown tool errors
+
+If you see `Unknown tool: slashpage.get-domain-info`, ask the assistant to use the bundled `slashpage-tools` skill, rediscover the available tools, and call the exact name exposed by the client. Tool display names and callable names can differ. This error alone does not mean your login has expired.
+
+Version `0.1.2` adds guidance for this discovery and recovery flow; it does not patch the client's internal tool routing. If the exact discovered tool still fails, refresh the client's tool session and report the client version and error.
+
+To update an existing Codex installation, run:
+
+```bash
+codex plugin marketplace upgrade slashpage
+codex plugin add slashpage@slashpage
+```
+
+Then start a new session so the updated skill is available.
+
 ## Verification status
 
-The initial configuration has passed static JSON and manifest validation. The complete flow in a new user environment—remote installation, OAuth sign-in, site selection, and MCP tool calls—has not yet been verified.
+JSON, plugin manifests, and skill metadata are validated. On September 15, 2026, site information and channel listing succeeded through Codex using an existing authorized account and the exact tools from its live inventory. The dotted tool name reproduced the reported lookup error. A fresh-user installation and OAuth flow, Claude Code runtime calls, and automatic skill selection have not been fully verified.
 
 During a server check on September 15, 2026, OAuth metadata was accessible, but the unauthenticated response had a renamed authentication header and a duplicate `/` in its metadata URL. The effect on authentication in each client still needs verification.
 
@@ -79,6 +94,7 @@ plugins/slashpage/
   .codex-plugin/plugin.json              # Codex plugin
   .claude-plugin/plugin.json             # Claude Code plugin
   .mcp.json                             # Shared MCP connection settings
+  skills/slashpage-tools/SKILL.md        # Tool discovery and error recovery
 ```
 
 Both marketplaces point to the same plugin directory. The `source.path` in `.agents/plugins/marketplace.json` is relative to the repository root. This package uses the `.codex-plugin` and `.claude-plugin` compatibility formats.

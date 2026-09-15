@@ -1,0 +1,4 @@
+interface:
+  display_name: "Slashpage"
+  short_description: "Use and troubleshoot Slashpage MCP tools"
+  default_prompt: "Use $slashpage-tools to check my connected Slashpage site and list its channels."

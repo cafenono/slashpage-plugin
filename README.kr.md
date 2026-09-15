@@ -7,9 +7,9 @@ Claude Code와 Codex에서 [Slashpage](https://slashpage.com)의 원격 MCP 서�
 - MCP 서버: `https://mcp.slashpage.com/`
 - 인증: Slashpage 계정으로 OAuth 로그인
 - 마켓플레이스 / 플러그인 이름: `slashpage` / `slashpage`
-- 버전: `0.1.1`
+- 버전: `0.1.2`
 
-플러그인은 연결 설정을 설치합니다. 사용자는 자신의 계정으로 로그인하고 연결할 사이트를 승인해야 합니다. API 키나 토큰을 파일에 입력할 필요가 없습니다.
+플러그인은 연결 설정과 클라이언트가 제공하는 도구를 찾아 호출하는 `slashpage-tools` 스킬을 설치합니다. 사용자는 자신의 계정으로 로그인하고 연결할 사이트를 승인해야 합니다. API 키나 토큰을 파일에 입력할 필요가 없습니다.
 
 ## Claude Code 설치
 
@@ -64,9 +64,24 @@ codex mcp login slashpage
 - 서버 URL은 `https://mcp.slashpage.com/`입니다. 뒤에 `/mcp`를 추가하지 않습니다.
 - 문제를 신고할 때 클라이언트 버전과 오류 메시지를 남기되, 액세스 토큰이나 개인 사이트 콘텐츠는 포함하지 마세요.
 
+### Unknown tool 오류
+
+`Unknown tool: slashpage.get-domain-info`가 나오면 에이전트에게 포함된 `slashpage-tools` 스킬을 사용해 도구 목록을 다시 조회하고, 클라이언트가 제공한 정확한 이름으로 호출하도록 요청하세요. 화면에 표시되는 이름과 실제 호출 이름은 다를 수 있습니다. 이 오류만으로 로그인 만료라고 판단하지 않습니다.
+
+`0.1.2`는 도구 탐색과 오류 복구 지침을 추가한 버전이며, 클라이언트 내부의 도구 중계 코드를 수정하지는 않습니다. 목록의 정확한 이름으로도 실패하면 클라이언트의 도구 세션을 새로 열고, 클라이언트 버전과 오류를 함께 알려 주세요.
+
+기존 Codex 설치는 다음 명령으로 업데이트합니다.
+
+```bash
+codex plugin marketplace upgrade slashpage
+codex plugin add slashpage@slashpage
+```
+
+업데이트한 스킬을 불러오도록 새 세션을 시작하세요.
+
 ## 검증 범위
 
-초기 구성은 JSON과 매니페스트의 정적 검증을 수행했습니다. 새 사용자 환경의 원격 설치 → OAuth 로그인 → 사이트 선택 → MCP 도구 호출까지의 전체 검증은 아직 완료하지 않았습니다.
+JSON, 플러그인 매니페스트, 스킬 메타데이터 검증을 통과했습니다. 2026-09-15 기존 인증 계정으로 Codex의 실제 도구 목록에 있는 이름을 사용해 사이트 정보와 채널 목록 조회에 성공했습니다. 점으로 구분한 도구 이름에서는 보고된 오류가 재현됐습니다. 새 사용자 설치와 OAuth 전체 흐름, Claude Code의 실제 도구 호출, 스킬 자동 선택은 전체 검증하지 않았습니다.
 
 2026-09-15 서버 점검에서 OAuth 메타데이터는 조회됐지만, 비인증 응답의 인증 헤더 이름 변경과 메타데이터 URL의 중복 `/`를 관찰했습니다. 클라이언트별 인증 영향은 추가 확인이 필요합니다.
 
@@ -79,6 +94,7 @@ plugins/slashpage/
   .codex-plugin/plugin.json              # Codex 플러그인
   .claude-plugin/plugin.json             # Claude Code 플러그인
   .mcp.json                             # 공통 MCP 연결 설정
+  skills/slashpage-tools/SKILL.md        # 도구 탐색과 오류 복구
 ```
 
 두 마켓플레이스는 같은 플러그인 폴더를 가리킵니다. `.agents/plugins/marketplace.json`의 `source.path`는 저장소 루트 기준입니다. 이 패키지는 `.codex-plugin`과 `.claude-plugin` 호환 형식을 사용합니다.

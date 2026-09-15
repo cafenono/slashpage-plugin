@@ -1,6 +1,6 @@
 {
   "name": "slashpage",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Connect to Slashpage through its remote MCP server.",
   "author": {
     "name": "Slashpage"
@@ -19,10 +19,11 @@
       "Write"
     ],
     "defaultPrompt": [
-      "Show what I can do with my connected Slashpage site."
+      "Use $slashpage-tools to show what I can do with my connected Slashpage site."
     ],
     "websiteURL": "https://slashpage.com",
     "logo": "./assets/slash-icon-512x512.png",
     "composerIcon": "./assets/slash-icon-512x512.png"
-  }
+  },
+  "skills": "./skills/"
 }
